@@ -29,3 +29,18 @@ jobs:
         with:
           name: constitution
           path: main.pdf
+
+      - name: Copy built constitution to web folder
+        run: cp main.pdf pages/constitution.pdf
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'pages'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
