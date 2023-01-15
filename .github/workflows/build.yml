@@ -19,10 +19,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install apt dependencies for TeX
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: tex-common texlive-extra-utils texlive-fonts-extra texlive-formats-extra texlive latexmk
-          version: 1.0
+        run: sudo apt-get install -y tex-common texlive-extra-utils texlive-fonts-extra texlive-formats-extra texlive latexmk
 
       - name: Compile LaTeX via latexmk
         run: latexmk
