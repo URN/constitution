@@ -26,7 +26,7 @@ jobs:
         run: sudo apt-get install -y tex-common texlive-extra-utils texlive-fonts-extra texlive-formats-extra texlive latexmk
 
       - name: Compile LaTeX via latexmk
-        run: latexmk
+        run: latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf main.tex
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
