@@ -1,0 +1,30 @@
+name: Build Constitution
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Compile LaTeX via latexmk
+        uses: antaljanosbenjamin/compile-latex@v1.0.0
+        with:
+          file: main.tex
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: constitution
+          path: main.pdf
