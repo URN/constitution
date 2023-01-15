@@ -11,12 +11,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Install TeX requirements
+        run: sudo apt-get install -y tex-common texlive-extra-utils texlive-fonts-extra texlive-formats-extra texlive
 
       - name: Compile LaTeX via latexmk
         uses: antaljanosbenjamin/compile-latex@v1.0.0
