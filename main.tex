@@ -22,13 +22,19 @@
 \author{\vspace{-5ex}}
 \date{\vspace{-5ex}}
 
-\begin{document}
-
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \cfoot{\makebox[\textwidth][c]{Page \thepage\ of \pageref{LastPage}}}
+
+\fancypagestyle{plain}{
+\lfoot{}
+\rfoot{}
+\cfoot{\makebox[\textwidth][c]{Page \thepage\ of \pageref{LastPage}}}
+}
+
+\begin{document}
 
 \savegeometry{Mem}
 \newgeometry{margin=50pt}
