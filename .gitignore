@@ -1,0 +1,9 @@
+# LaTeX Files
+*.log
+*.aux
+*.fdb_latexmk
+*.fls
+*.gz
+
+# Build Files
+*.pdf
