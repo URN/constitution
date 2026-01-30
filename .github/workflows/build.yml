@@ -20,25 +20,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Install apt dependencies for TeX
-        run: sudo apt-get install -y tex-common texlive-extra-utils texlive-fonts-extra texlive-formats-extra texlive latexmk
-
-      - name: Compile LaTeX via latexmk
-        run: latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf main.tex
-
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
         with:
-          name: constitution
-          path: main.pdf
+          root_file: main.tex
+          args: -pdf -file-line-error -interaction=nonstopmode
 
-      - name: Copy built constitution to web folder
-        run: cp main.pdf pages/constitution.pdf
+      - name: Prepare Pages directory
+        run: |
+          mkdir -p pages
+          cp main.pdf pages/constitution.pdf
 
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -47,4 +43,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
